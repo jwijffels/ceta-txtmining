@@ -49,7 +49,7 @@ wordcloud(words = x$word.lemma, freq = x$n, max.words = 150, random.order = FALS
           colors = brewer.pal(8, "Dark2"))
 
 library(wordcloud2)
-wordcloud2(data = head(x, 200))
+wordcloud2(data = head(x, 700), figPath = "maple_europa_black.png")
 
 library(topicmodels.utils)
 x$word.lemma <- factor(x$word.lemma, 
