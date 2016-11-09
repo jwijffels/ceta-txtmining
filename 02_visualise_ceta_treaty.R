@@ -29,6 +29,10 @@ ceta_topics <- LDA(x = dtm[, topterms], k = 5, method = "VEM",
                    control = list(alpha = 0.1, estimate.alpha = TRUE, seed = as.integer(10:1), 
                                   verbose = FALSE, nstart = 10, save = 0, best = TRUE))
 ceta_topic_terms <- predict(ceta_topics, type = "terms", min_posterior = 0.01)
+ceta_topic_terms$topic3
+scores <- predict(ceta_topics, newdata = dtm[, topterms], type = "topics")
+table(scores$topic)
+
 
 ######################################################################################
 ## Visualise
@@ -41,8 +45,6 @@ ceta_topic_terms <- predict(ceta_topics, type = "terms", min_posterior = 0.01)
 x <- ceta$ceta_nouns[, list(n = .N), by = list(word.lemma)]
 x <- x[order(x$n, decreasing = TRUE), ]
 x <- as.data.frame(x)
-
-
 
 library(wordcloud)
 wordcloud(words = x$word.lemma, freq = x$n, max.words = 150, random.order = FALSE,
